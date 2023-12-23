@@ -16,19 +16,24 @@ router.use(session({
   secret:"ghvvhvhbbj"
 }));
 
-//admin route
-router.get('/admin', function(req, res, next) {
 
-   if(req.session.username){
+//checking for logged in user
+function isLoggedIn(req, res, next){
+  if(req.session.username){
    
     req.session.destroy();
 
     //linking admin page
-    res.render("admin");
-   }else{
-    res.redirect('/login');
+   return next();
    }
-  
+   res.redirect("/login")
+};
+
+//admin route
+router.get('/admin', isLoggedIn, function(req, res, next) {
+
+  res.render("admin");
+   
 });
 
 
