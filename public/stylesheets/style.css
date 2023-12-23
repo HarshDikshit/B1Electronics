@@ -1,12 +1,34 @@
+*{
+  margin: 0%;
+  padding: 0%;
+  }
+
+
+
 body {
-  
+  height: 100%;
+  width: 100%;
+ 
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
+
+.nav{
+
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+ padding-left: 2vh;
+    
+ 
 }
-.aayu{
-  text-shadow: 1px 1px #000;
-  color: #f1f106;
+.navItem{
+  padding-right: 2vh;
+  display: flex;
+ gap:3vh;
+}
+.sug{
+  text-decoration: none;
+  color: black;
 }
