@@ -9,7 +9,9 @@ const User = require('./users');
 const localStrategy= require("passport-local");
 const passport = require('passport');
 passport.use(new localStrategy(userModel.authenticate()));
-
+const fs=require('fs');
+const {promisify}= require('util');
+const unlinkAsync=promisify(fs.unlink);
 
 
 
@@ -126,10 +128,14 @@ res.redirect('/admin');
 
 //get delete posts
 router.get('/delete/:id', async function(req, res,next){
-  await slideModel.findByIdAndDelete({
+ const slide= await slideModel.findByIdAndDelete({
     _id: req.params.id
   })
-  res.redirect('/admin');
-})
+if(slide.token=="slide"){
+  await unlinkAsync("./public/images/uploads/"+slide.imageUrl);
  
-module.exports = router; 
+}
+  res.redirect('/admin');
+})  
+ 
+module.exports = router;  

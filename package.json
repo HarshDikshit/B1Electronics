@@ -9,7 +9,7 @@
   "scripts": {
   
     
-  "start": "app.js"
+  "start": "node ./bin/www"
   
   }, 
   

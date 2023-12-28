@@ -74,10 +74,10 @@
           <th>Delete</th>
 
 
-        </tr>
+        </tr>    
 
         <% posts.forEach(function(elem){ %>
-          <% if(elem.token=="update"){ %>
+          <% if(elem.token=="update"){ %> 
 <tr>
   <form action="/admin/<%= elem._id %>" method="post">
     <td><output name="token"><%= elem.token %></output></td>
