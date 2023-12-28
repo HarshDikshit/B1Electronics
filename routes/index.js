@@ -13,8 +13,12 @@ const fs=require('fs');
 const {promisify}= require('util');
 const unlinkAsync=promisify(fs.unlink);
 
-
-
+const mongoose=require('mongoose');
+mongoose.connect("mongodb+srv://harshdixit15031975:amandixit@cluster0.jzb6fgz.mongodb.net/?retryWrites=true&w=majority").then(()=>
+{
+  console.log("great")
+}).catch((err) => console.log("wrong"))
+ 
 
 
 // GET home page
@@ -124,7 +128,7 @@ res.redirect('/admin');
 }
 
 });
-
+ 
 
 //get delete posts
 router.get('/delete/:id', async function(req, res,next){
