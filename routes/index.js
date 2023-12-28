@@ -10,7 +10,12 @@ const localStrategy= require("passport-local");
 const passport = require('passport');
 passport.use(new localStrategy(userModel.authenticate()));
 
-/* GET home page. */
+
+
+
+
+
+// GET home page
 router.get('/', async function(req, res, next) {
   var posts= await slideModel.find();
 
@@ -38,7 +43,7 @@ function isLoggedIn(req, res, next){
    res.redirect("/login"); 
 }
 
-//admin route
+// get admin route
 router.get('/admin', isLoggedIn, async function(req, res, next) {
 console.log(req.session.passport.user)
 
@@ -47,19 +52,15 @@ var posts= await slideModel.find();
 res.render('admin', {posts});
 })
 
-router.get('/', async function(req, res, next) {
-  var posts= await slideModel.find();
 
- res.render('index',{posts});
-
-});
-//register
+// get register route
 
 router.get('/register', function(req, res, next){
   res.render("register");
 
 });
 
+// post on register button clicked
 router.post('/register', async function (req, res ,next){
   var userdata= new userModel({
     username: req.body.username,
@@ -73,25 +74,14 @@ router.post('/register', async function (req, res ,next){
   })
 })   
  
-//login route 
+//get login route
  
 router.get('/login', function(req, res, next) {
  res.render("login", {name: "himanshu"});
 });
 
-/*
-router.post('/login', async function(req, res, next) {
 
- if(await userModel.findOne({username : req.body.username,
-password: req.body.password})){ 
-  let user= await  userModel.findOne({username : req.body.username});
-  req.session.username= user.username;
-  res.redirect('/admin');
-}else{
- res.send("error"); 
-}
-});*/
-
+//post login button click
 
 router.post("/login", passport.authenticate("local",{
  
@@ -103,12 +93,10 @@ router.get("/project", function(req, res, next){
   res.send("lets build together this page");
 });
 
-//admin 
+// post data creation through admin panel
 
 router.post('/updateslide', upload.single('image') , isLoggedIn, async function(req,res){
- /* var user= await userModel.findOne({
-    username: req.session.passport.username
-  })*/
+ 
   
  if(req.file && req.body.token=="slide"){
   const imgSlide= await slideModel.create({
@@ -135,6 +123,8 @@ res.redirect('/admin');
 
 });
 
+
+//get delete posts
 router.get('/delete/:id', async function(req, res,next){
   await slideModel.findByIdAndDelete({
     _id: req.params.id
