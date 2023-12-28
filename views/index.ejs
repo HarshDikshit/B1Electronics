@@ -1,33 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="/stylesheets/style.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link href="/dist/output.css" rel="stylesheet">
+  </head>
+  <body>
 
-  <div class="nav">
 
-    <div class="logo">
-      
-    <h3>Electronics 1st Year</h3>
+   <% include %>
+    <div class="nav">
+      <div class="logo">
+        <h3>Electronics 1st Year</h3>
+      </div>
+      <div class="navItem">
+        <h3 id="suggest">
+          <a
+            class="sug"
+            href="mailto:harshdixitofficial@gmail.com?subject = Suggestion"
+          >
+            Write Suggestion
+          </a>
+        </h3>
+        <h3 id="project"><a href="/project">Dev Projects</a></h3>
+        <h3 id="admin"><a href="/login">Login</a></h3>
+      </div>
     </div>
-    <div class="navItem">
-    
-      <h3 id="suggest"><a class="sug" href = "mailto:harshdixitofficial@gmail.com?subject = Feedback" > Write Suggestion </a></h3>
-      <h3 id="sitemaps">Sitemaps</h3>
-      <h3 id="admin"><a href="/login">Login</a></h3>
 
-    </div>
+  <hr> 
+    <section class="containerHead w-20px">
+     
+      <div class="slider-wrapper">
+        <div class="slider">
+          <% posts.reverse().forEach(function(elem){ %>
+            <% if(elem.token=="slide"){ %>
+          <img id="<%= elem.imageUrl %>"  src="/images/uploads/<%= elem.imageUrl %> " alt="" srcset=""/>
+          <% } %>
+          <% }) %>
+        </div>
+        <div class="slider-nav">
+          <% posts.forEach(function(elem){ %>
+            <% if(elem.token=="slide"){ %>
+          <a href="#<%= elem.imageUrl %>"></a>
+          <% } %>
+         <% }) %>
+        </div>
+      </div>
+    </section>
 
-
+  <div class="pdf">
+   
   </div>
-
-
-
-
- 
-</body>
+    <% include %>
+  </body>
 </html>

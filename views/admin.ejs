@@ -1,11 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    hwllo from admin
-</body>
+    <link rel="stylesheet" href="/stylesheets/admin.css">
+  </head>
+  <body>
+
+    <% include %>
+    <div class="slider-images">
+      <h1>Update Home Pages</h1>
+      <form action="/updateslide" method="post" enctype="multipart/form-data">
+        <input type="text" class="description" name="description" placeholder="Description"/>
+        <input type="text" class="token" name="token" placeholder="Token"/>
+        <input type="text" class="link" name="link" placeholder="link"/>
+        <input type="file" class="imageinput" name="image"/>
+        <input type="submit" value="Update" />
+      </form>
+    </div>
+
+    
+
+    <div class="slide-list">
+      <h2>Slide Images</h2>
+       <table class="record">
+        <tr class="heading">
+          <th>Token</th>
+          <th>ID</th>
+          <th>username</th>
+          <th>Image</th>
+          <th>Description</th>
+          <th>Date</th>
+          <th>Delete</th>
+
+
+        </tr>
+
+        <% posts.reverse().forEach(function(elem){ %>
+          <% if(elem.token=="slide"){ %>
+<tr>
+  <form action="/admin/<%= elem._id %>" method="post">
+    <td><output name="token"><%= elem.token %></output></td>
+        <td><output name="id"><%= elem._id %></output></td>
+        <td><output name="username"><%= elem.username %></output></td>
+        <td><output name="img"><img   class="img-col"src="/images/uploads/<%= elem.imageUrl %>" alt=""></output></td>
+        <td><output name="des"><%= elem.description %></output></td>
+        <td><output name="date"><%= elem.date %></output></td>
+        <td>
+        
+     <button>  <a href="/delete/<%= elem._id %>">Delete</a></button>
+        </td>
+      </form>
+    
+      </tr>
+      <% } %>
+    <% }) %>
+
+       </table>
+    </div>
+
+    <div class="update-list"
+    >
+      <h2>Updates Table</h2>
+       <table class="record">
+        <tr class="heading">
+          <th>Token</th>
+          <th>ID</th>
+          <th>username</th>
+          <th>Link</th>
+          <th>Description</th>
+          <th>Date</th>
+          <th>Delete</th>
+
+
+        </tr>
+
+        <% posts.forEach(function(elem){ %>
+          <% if(elem.token=="update"){ %>
+<tr>
+  <form action="/admin/<%= elem._id %>" method="post">
+    <td><output name="token"><%= elem.token %></output></td>
+        <td><output name="id"><%= elem._id %></output></td>
+        <td><output name="username"><%= elem.username %></output></td>
+        <td><output name="link"><%= elem.link %></output></td>
+        <td><output name="des"><%= elem.description %></output></td>
+        <td><output name="date"><%= elem.date %></output></td>
+        <td>
+        
+     <button>  <a href="/delete/<%= elem._id %>">Delete</a></button>
+        </td>
+      </form>
+    
+      </tr>
+      <% } %>
+    <% }) %>
+
+       </table>
+    </div>
+
+    <% include %>
+  </body>
 </html>
