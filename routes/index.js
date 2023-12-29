@@ -14,10 +14,13 @@ const {promisify}= require('util');
 const unlinkAsync=promisify(fs.unlink);
 
 const mongoose=require('mongoose');
-mongoose.connect("mongodb+srv://harshdixit15031975:amandixit@cluster0.jzb6fgz.mongodb.net/?retryWrites=true&w=majority").then(()=>
-{
+/*
+.then(()=>
+{mongoose.connect("mongodb+srv://harshdixit15031975:amandixit@cluster0.jzb6fgz.mongodb.net/?retryWrites=true&w=majority")
   console.log("great")
-}).catch((err) => console.log("wrong"))
+}).catch((err) => console.log("wrong")) */
+mongoose.connect("mongodb://127.0.0.1:27017/boneelectronics");
+
  
 
 
@@ -101,45 +104,51 @@ router.get("/project", function(req, res, next){
 
 // post data creation through admin panel
 
-router.post('/updateslide', upload.single('image') , isLoggedIn, async function(req,res){
+router.post('/updateslide',  upload.single('image'), isLoggedIn, async function(req,res){
  
   
- if(req.file && req.body.token=="slide"){
+
+ 
+  upload.single('image')
+  if(req.file){
   const imgSlide= await slideModel.create({
   imageUrl: req.file.filename,
+  link: "",
   token: req.body.token,
   description: req.body.description,
   username: req.session.passport.user
 })
-res.redirect('/admin');
-
-}else if(req.body.token=="update" && req.body.link != ""){
-  const imgSlide= await slideModel.create({
-    link: req.body.link,
-    token: req.body.token,
-    description: req.body.description,
-    username: req.session.passport.user
-  })
-  res.redirect('/admin');
-}else{
-  
-  
-  res.redirect('/admin');
+  }else{
+    const imgSlide= await slideModel.create({
+      imageUrl: "",
+      link: req.body.link,
+      token: req.body.token,
+      description: req.body.description,
+      username: req.session.passport.user
+      })
 }
-
+res.redirect('/admin');
 });
  
-
+ 
 //get delete posts
 router.get('/delete/:id', async function(req, res,next){
+   //find and delete
+
  const slide= await slideModel.findByIdAndDelete({
     _id: req.params.id
   })
+
+
+//check for server side images delete
 if(slide.token=="slide"){
+  try{
   await unlinkAsync("./public/images/uploads/"+slide.imageUrl);
- 
+  }catch(err){
+    console.log("something went wrong");
+  }
 }
   res.redirect('/admin');
-})  
+})    
  
 module.exports = router;  

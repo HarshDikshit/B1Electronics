@@ -38,7 +38,7 @@
         </tr>
 
         <% posts.reverse().forEach(function(elem){ %>
-          <% if(elem.token=="slide"){ %>
+          <% if(elem.imageUrl != ""){ %>
 <tr>
   <form action="/admin/<%= elem._id %>" method="post">
     <td><output name="token"><%= elem.token %></output></td>
@@ -77,7 +77,7 @@
         </tr>    
 
         <% posts.forEach(function(elem){ %>
-          <% if(elem.token=="update"){ %> 
+          <% if(elem.link !=""){ %> 
 <tr>
   <form action="/admin/<%= elem._id %>" method="post">
     <td><output name="token"><%= elem.token %></output></td>
