@@ -14,11 +14,12 @@ const {promisify}= require('util');
 const unlinkAsync=promisify(fs.unlink);
 
 const mongoose=require('mongoose');
+
 mongoose.connect("mongodb+srv://harshdixit15031975:amandixit@cluster0.jzb6fgz.mongodb.net/?retryWrites=true&w=majority")
 .then(()=>
 {
-  console.log("great")
-}).catch((err) => console.log("wrong")) 
+  console.log("great");
+}).catch((err) => console.log("wrong"));
 //mongoose.connect("mongodb://127.0.0.1:27017/boneelectronics");
 
  
@@ -109,16 +110,16 @@ router.post('/updateslide',  upload.single('image'), isLoggedIn, async function(
   
 
  
-  upload.single('image')
+ 
   if(req.file){
   const imgSlide= await slideModel.create({
   imageUrl: req.file.filename,
-  link: "",
+  link: req.body.link, 
   token: req.body.token,
   description: req.body.description,
   username: req.session.passport.user
 })
-  }else{
+  }else if(req.body.link != "" || req.body.token != "" || req.body.description != ""){
     const imgSlide= await slideModel.create({
       imageUrl: "",
       link: req.body.link,
@@ -126,6 +127,8 @@ router.post('/updateslide',  upload.single('image'), isLoggedIn, async function(
       description: req.body.description,
       username: req.session.passport.user
       })
+}else{
+  res.send("kindly fill required field")
 }
 res.redirect('/admin');
 });
@@ -141,14 +144,15 @@ router.get('/delete/:id', async function(req, res,next){
 
 
 //check for server side images delete
-if(slide.token=="slide"){
+
   try{
   await unlinkAsync("./public/images/uploads/"+slide.imageUrl);
   }catch(err){
     console.log("something went wrong");
   }
-}
+
   res.redirect('/admin');
 })    
  
 module.exports = router;  
+

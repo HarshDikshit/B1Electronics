@@ -6,53 +6,83 @@
     <title>Document</title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
     <link href="/dist/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body>
 
 
    <% include %>
-    <div class="nav">
-      <div class="logo">
-        <h3>Electronics 1st Year</h3>
-      </div>
-      <div class="navItem">
-        <h3 id="suggest">
-          <a
-            class="sug"
-            href="mailto:harshdixitofficial@gmail.com?subject = Suggestion"
-          >
-            Write Suggestion
-          </a>
-        </h3>
-        <h3 id="project"><a href="/project">Dev Projects</a></h3>
-        <h3 id="admin"><a href="/login">Login</a></h3>
-      </div>
-    </div>
+   <nav>
+    <input type="checkbox" id="check">
+    <label for="check" class="checkbtn">
+      <i class="navbar fa fa-bars"></i>
+    </label>
+    <label class="logo">Admin</label>
+    
+    <ul class="navlist visibility">
+     
+      <li><a class="me-i">Gallery</a></li>
+      <li><a class="me-i" href="mailto:harshdixitofficial@gmail.com?subject = Feedback">Feedback</a></li>
+      <li><a class="me-i" href="/login">Login</a></li>
+    </ul>
+  </nav>
+<section class="main-sec">
 
-  <hr> 
-    <section class="containerHead w-20px">
+    <section class="containerHead">
      
       <div class="slider-wrapper">
         <div class="slider">
           <% posts.reverse().forEach(function(elem){ %>
             <% if(elem.token=="slide"){ %>
-          <img id="<%= elem.imageUrl %>"  src="/images/uploads/<%= elem.imageUrl %> " alt="" srcset=""/>
+          <img id="<%= elem._id %>"  src="/images/uploads/<%= elem.imageUrl %> " alt="" srcset=""/>
           <% } %>
           <% }) %>
         </div>
         <div class="slider-nav">
           <% posts.forEach(function(elem){ %>
             <% if(elem.token=="slide"){ %>
-          <a href="#<%= elem.imageUrl %>"></a>
+          <a href="#<%= elem._id %>"></a>
           <% } %>
          <% }) %>
         </div>
       </div>
     </section>
 
+
+
+
+
   <div class="update-section">
-   
+    
+    
+       <table class="record">
+        <thead class="heading">
+          <th>Updates</th>
+          <th></th>
+        </thead>    
+
+        <% posts.forEach(function(elem){ %>
+          <% if(elem.token =="update" && elem.description != ""){ %> 
+<tbody> 
+     <tr>
+      <td data-label="Description"><output name="des"><b><%= elem.description %></b></output></td> 
+
+        <% if(elem.link != ""){ %>
+       <td data-label="View"> <a href="<%= elem.link %>"><b class="view">Visit</b></a></td>
+        <% } %>
+
+      </tr>
+      
+    
+</tbody>
+      <% } %>
+    <% }) %>
+
+       </table>
+    
   </div>
+</section>
     <% include %>
   </body>
 </html>
