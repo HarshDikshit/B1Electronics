@@ -20,7 +20,7 @@ mongoose.connect("mongodb+srv://harshdixit15031975:amandixit@cluster0.jzb6fgz.mo
 {
   console.log("great");
 }).catch((err) => console.log("wrong"));
-mongoose.connect("mongodb://127.0.0.1:27017/boneelectronics");
+//mongoose.connect("mongodb://127.0.0.1:27017/boneelectronics");
 
  
 
