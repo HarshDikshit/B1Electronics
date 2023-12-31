@@ -14,13 +14,13 @@ const {promisify}= require('util');
 const unlinkAsync=promisify(fs.unlink);
 
 const mongoose=require('mongoose');
-/*
+
 mongoose.connect("mongodb+srv://harshdixit15031975:amandixit@cluster0.jzb6fgz.mongodb.net/?retryWrites=true&w=majority")
 .then(()=>
 {
   console.log("great");
-}).catch((err) => console.log("wrong")); */ 
-mongoose.connect("mongodb://127.0.0.1:27017/boneelectronics");
+}).catch((err) => console.log("wrong")); 
+//mongoose.connect("mongodb://127.0.0.1:27017/boneelectronics");
 
  
 
