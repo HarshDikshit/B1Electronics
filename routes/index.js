@@ -111,7 +111,7 @@ router.post('/updateslide',  upload.single('image'), isLoggedIn, async function(
 
  
  
-  if(req.file){
+ /* if(req.file){
   const imgSlide= await slideModel.create({
   imageUrl: req.file.filename,
   link: req.body.link, 
@@ -119,9 +119,9 @@ router.post('/updateslide',  upload.single('image'), isLoggedIn, async function(
   description: req.body.description,
   username: req.session.passport.user
 })
-  }else if(req.body.link != "" || req.body.token != "" || req.body.description != ""){
+  } */ if(req.body.link != "" || req.body.token != "" || req.body.description != ""){
     const imgSlide= await slideModel.create({
-      imageUrl: "",
+    /*  imageUrl: "", */
       link: req.body.link,
       token: req.body.token,
       description: req.body.description,

@@ -35,7 +35,7 @@
         <div class="slider">
           <% posts.reverse().forEach(function(elem){ %>
             <% if(elem.token=="slide"){ %>
-          <img id="<%= elem._id %>"  src="/images/uploads/<%= elem.imageUrl %>"/>
+          <img id="<%= elem._id %>"  src="https://drive.google.com/uc?id=<%= elem.link %>"/>
           <% } %>
           <% }) %>
         </div>
