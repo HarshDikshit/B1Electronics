@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/stylesheets/style.css" />
     <link href="/dist/output.css" rel="stylesheet">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body>
@@ -33,7 +34,7 @@
      
 
       <!--slider images-->
-      <div class="slider-wrapper">
+      <div class="slider-wrapper1">
         <div class="slider">
           <% posts.reverse().forEach(function(elem){ %>
             <% if(elem.token=="slide"){ %>
@@ -85,7 +86,28 @@
     
   </div>
 </div>
+<div class="sitemap">
+<div class="wrapper">
+  <i id="left" class="fa-solid fa-angle-left"></i>
+  <ul class="carousel">
+    <% posts.forEach(function(elem){ %>
+      <% if(elem.token =="sitemap" && elem.description != ""){ %> 
+    <li class="card">
+      <div class="img"><img src="https://drive.google.com/uc?id=<%= elem.link %>" alt="img" draggable="false"></div>
+      <h2><%= elem.description %></h2>
+    
+    </li>
+    <% } %>
+    <% }) %>
+  
+   
+  </ul>
+  <i id="right" class="fa-solid fa-angle-right"></i>
+</div>
+</div>
 </section>
     <% include %>
+
+    <script src="/javascripts/script.js"></script>
   </body>
 </html>
