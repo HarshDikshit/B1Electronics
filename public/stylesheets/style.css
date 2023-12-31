@@ -162,11 +162,12 @@ text-align: left;
   width:  100%;
 }
 .slider-wrapper{
-
+width: 90%;
   top: 0%;
   max-height: 90%;
 }
 .slider{
+  width: 100%;
   aspect-ratio: 16/7;
 }
 }
@@ -179,8 +180,9 @@ section{
     }
 /* body*/
 .update-section{
- 
-  padding: 20px;
+  max-height: 300px;
+  overflow-y: scroll;
+  padding: 10px;
 }
 a{
   text-decoration: none;
@@ -197,7 +199,7 @@ a{
 
 .slider-wrapper{
  
-  max-height: 80%;
+  max-height: 100%;
   margin: 0 auto;
   align-items: center;
   
@@ -205,7 +207,6 @@ a{
 }
 
 .slider{
-
   display: flex;
   aspect-ratio: 16/9;
   overflow: auto;
@@ -263,21 +264,21 @@ overflow: hidden;
   color: brown;
 }
 table{
-  overflow: hidden;
- 
-  padding: 10px;
+  width: 100%;
+  
+  border-collapse: separate;
+  border-spacing: 0px;
+  
 }
 
 table ,th, td  {
-  overflow: hidden;
- 
+  
   padding: 10px;
-  border-collapse: collapse;
+ 
 width: 100%;
 }
 
-th, td {
-  overflow: hidden;
+ td {
   
   min-height: 50px;
   padding: 10px;
@@ -287,10 +288,16 @@ th, td {
 }
 
 th {
-  overflow: hidden;
   
+  position: sticky;
+  top: 0px;
   background-color: brown;
   color: aliceblue;
+  min-height: 50px;
+  padding: 10px;
+  border: 1px solid #1e1d1d;
+  text-align: center;
+  font-size: 16px;
 }
 
 table tbody td:nth-child(){
@@ -307,8 +314,15 @@ a{
   color: black;
 }
 .update-list{
-  margin-top: 23px;
+ 
+  margin: 23px;
 }
-
+.outer-wrapper{
+  border: 1px solid black;
+  box-shadow: 0px 0px 3px black;
+  margin: 20px 40px;
+  border-radius: 5px;
+  max-width: fit-content;
+}
 
 

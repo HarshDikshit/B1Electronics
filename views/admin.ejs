@@ -55,7 +55,7 @@
     </div>
 
     
-
+    <div class="outer-wrapper">
     <div class="slide-list">
       <h2>Slide Images</h2>
        <table class="record">
@@ -63,7 +63,7 @@
           <th>Token</th>
           <th>ID</th>
           <th>username</th>
-          <th>Image</th>
+          <th>Img URL</th>
           <th>Description</th>
           <th>Date</th>
           <th>Delete</th>
@@ -72,18 +72,17 @@
         </thead>
 
         <% posts.reverse().forEach(function(elem){ %>
-          <% if(elem.imageUrl != "" || elem.token == "slide"){ %>
+          <% if(elem.token == "slide"){ %>
 <tbody>
   <tr></tr>
   <form action="/admin/<%= elem._id %>" method="post">
     <td data-label="Token"><output name="token"><%= elem.token %></output></td>
         <td data-label="ID"><output name="id"><%= elem._id %></output></td>
         <td data-label="Username"><output name="username"><%= elem.username %></output></td>
-        <td data-label="Image"><output name="img"><img   class="img-col"src="/images/uploads/<%= elem.imageUrl %>" alt=""></output></td>
+        <td data-label="Img URL"><output name="img"><%= elem.link %></output></td>
         <td data-label="Description"><output name="des"><%= elem.description %></output></td>
         <td data-label="Date"><output name="date"><%= elem.date %></output></td>
         <td data-label="Delete">
-        
      <button>  <a href="/delete/<%= elem._id %>">Delete</a></button>
         </td>
       </form>
@@ -93,8 +92,10 @@
     <% }) %>
 
        </table>
-    </div>
+    </div></div>
 
+
+<div class="outer-wrapper">
     <div class="update-list"
     >
       <h2>Updates Table</h2>
@@ -135,7 +136,7 @@
     <% }) %>
 
        </table>
-    </div>
+    </div></div>
 
   <dialog  id="open">
     <div></div>
