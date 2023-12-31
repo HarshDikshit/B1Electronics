@@ -18,11 +18,11 @@
     <label for="check" class="checkbtn">
       <i class="navbar fa fa-bars"></i>
     </label>
-    <label class="logo">Admin</label>
+    <label class="logo">Home</label>
     
     <ul class="navlist visibility">
      
-      <li><a class="me-i">Gallery</a></li>
+      <li><a class="me-i" href="/project">Gallery</a></li>
       <li><a class="me-i" href="mailto:harshdixitofficial@gmail.com?subject = Feedback">Feedback</a></li>
       <li><a class="me-i" href="/login">Login</a></li>
     </ul>
@@ -35,7 +35,7 @@
         <div class="slider">
           <% posts.reverse().forEach(function(elem){ %>
             <% if(elem.token=="slide"){ %>
-          <img id="<%= elem._id %>"  src="/images/uploads/<%= elem.imageUrl %> " alt="" srcset=""/>
+          <img id="<%= elem._id %>"  src="https://drive.google.com/uc?id=1Oqp3kLrSLEW7jwusyYXB4ILW6GEWrwUa"/>
           <% } %>
           <% }) %>
         </div>
@@ -70,7 +70,10 @@
 
         <% if(elem.link != ""){ %>
        <td data-label="View"> <a href="<%= elem.link %>"><b class="view">Visit</b></a></td>
-        <% } %>
+        <% }else{ %>
+          <td data-label="View"><b class="view"></b></td>
+
+          <% } %>
 
       </tr>
       
