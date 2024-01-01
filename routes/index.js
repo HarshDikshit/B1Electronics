@@ -25,7 +25,8 @@ mongoose.connect("mongodb+srv://harshdixit15031975:amandixit@cluster0.jzb6fgz.mo
  
 
 
-// GET home page
+// GET home pagenpx nodemon
+
 router.get('/', async function(req, res, next) {
   var posts= await slideModel.find();
 
