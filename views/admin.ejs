@@ -112,7 +112,7 @@
         </thead>    
 
         <% posts.forEach(function(elem){ %>
-          <% if(elem.token == "update" || elem.token == "sitemap"){ %> 
+          <% if(elem.token == "update" || elem.token == "sitemap" || elem.token == "study"){ %> 
 <tbody>
 
   <form action="/admin/<%= elem._id %>" method="post">

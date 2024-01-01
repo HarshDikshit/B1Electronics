@@ -330,7 +330,7 @@ a{
 
 .wrapper {
 max-width: fit-content;
-  margin: auto;
+margin: auto;
  
   width: 80%;
   position: relative;
@@ -434,5 +434,13 @@ max-width: fit-content;
   }
 }
 .sitemap{
+
   width: 100%;
+}
+.admin-heading{
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  size: 100px;
+
 }

@@ -86,8 +86,45 @@
     
   </div>
 </div>
+
+<div class="outer-wrapper">
+  <div class="update-section">
+    
+    
+       <table class="record">
+        <thead class="heading">
+          <th>Study Material</th>
+          <th></th>
+        </thead>    
+
+        <% posts.forEach(function(elem){ %>
+          <% if(elem.token =="study" && elem.description != ""){ %> 
+<tbody> 
+     <tr>
+      <td data-label="Description"><output name="des"><b><%= elem.description %></b></output></td> 
+
+        <% if(elem.link != ""){ %>
+       <td data-label="View"> <a href="<%= elem.link %>"><b class="view">Visit</b></a></td>
+        <% }else{ %>
+          <td data-label="View"><b class="view"></b></td>
+
+          <% } %>
+
+      </tr>
+      
+    
+</tbody>
+      <% } %>
+    <% }) %>
+
+       </table>
+    
+  </div>
+</div>
+
 <div class="sitemap">
 <div class="wrapper">
+ 
   <i id="left" class="fa-solid fa-angle-left"></i>
   <ul class="carousel">
     <% posts.forEach(function(elem){ %>
