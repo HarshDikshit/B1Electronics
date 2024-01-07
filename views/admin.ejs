@@ -71,14 +71,14 @@
         </thead>
 
         <% posts.reverse().forEach(function(elem){ %>
-          <% if(elem.token == "slide"){ %>
+          <% if(elem.token == "slide" || elem.token == "sitemap"){ %>
 <tbody>
   <tr></tr>
   <form action="/admin/<%= elem._id %>" method="post">
     <td data-label="Token"><output name="token"><%= elem.token %></output></td>
        
         <td data-label="Username"><output name="username"><%= elem.username %></output></td>
-        <td data-label="Img URL"><output name="img"><%= elem.link %></output></td>
+        <td data-label="Img URL"><img src="<%= elem.link %>" name="img"></img></td>
        
        
         <td data-label="Delete">
@@ -112,7 +112,7 @@
         </thead>    
 
         <% posts.forEach(function(elem){ %>
-          <% if(elem.token == "update" || elem.token == "sitemap" || elem.token == "study"){ %> 
+          <% if(elem.token == "update" || elem.token == "study"){ %> 
 <tbody>
 
   <form action="/admin/<%= elem._id %>" method="post">
@@ -120,7 +120,7 @@
     <td  data-label="Token"><output name="token"><%= elem.token %></output></td>
     
         <td data-label="username"><output name="username"><%= elem.username %></output></td>
-        <td data-label="link"><output name="link"><%= elem.link %></output></td>
+        <td data-label="link"><output name="link"><a href="<%= elem.link %>">View</a></output></td>
         <td data-label="Description"><output name="des"><%= elem.description %></output></td>
        
         <td data-label="Delete">

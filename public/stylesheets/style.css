@@ -159,16 +159,16 @@ text-align: left;
 .containerHead{
   
  
-  width:  100%;
+  width:  100vh;
 }
 .slider-wrapper1{
-width: 100%;
+width: 100vh;
   top: 0%;
-  max-height: 90%;
+ 
 }
 .slider{
-  width: 100%;
-  aspect-ratio: 16/7;
+  width: 100vh;
+  aspect-ratio: 16/9;
 }
 }
 section{
