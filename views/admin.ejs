@@ -120,7 +120,11 @@
     <td  data-label="Token"><output name="token"><%= elem.token %></output></td>
     
         <td data-label="username"><output name="username"><%= elem.username %></output></td>
+        <% if(elem.link != ""){ %>
         <td data-label="link"><output style="color: brown; font-weight: bold;" name="link"><a href="<%= elem.link %>">View</a></output></td>
+        <% }else{ %>
+          <td data-label="link"><output style="color: brown; font-weight: bold;" name="link"></output></td>
+          <% } %>
         <td data-label="Description"><output name="des"><%= elem.description %></output></td>
        
         <td data-label="Delete">
