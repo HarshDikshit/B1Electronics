@@ -171,13 +171,7 @@ width: 100vh;
   aspect-ratio: 16/9;
 }
 }
-section{
-  display: block;
- 
-      background: no-repeat;
-      background-size: cover;
-      height: calc(100vh-80px);
-    }
+
 /* body*/
 .update-section{
   max-height: 300px;
@@ -442,5 +436,19 @@ margin: auto;
   justify-content: center;
   margin: auto;
   size: 100px;
+
+}
+.ad{
+display: flex;
+ 
+  width: 100%;
+/*  justify-content: center;
+  align-items: center;*/
+}
+.adm{
+  font-weight: bold;
+ margin: auto;
+/*justify-content: center;
+  align-items: center;*/
 
 }

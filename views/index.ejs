@@ -5,144 +5,143 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>B1-Home</title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
-    <link href="/dist/output.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="/dist/output.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
   </head>
   <body>
+    <% include %>
+    <nav>
+      <input type="checkbox" id="check" />
+      <label for="check" class="checkbtn">
+        <i class="navbar fa fa-bars"></i>
+      </label>
+      <label class="logo">Home</label>
 
-
-   <% include %>
-   <nav>
-    <input type="checkbox" id="check">
-    <label for="check" class="checkbtn">
-      <i class="navbar fa fa-bars"></i>
-    </label>
-    <label class="logo">Home</label>
-    
-    <ul class="navlist visibility">
-     
-      <li><a class="me-i" href="/project">Gallery</a></li>
-      <li><a class="me-i" href="mailto:harshdixitofficial@gmail.com?subject = Feedback">Feedback</a></li>
-      <li><a class="me-i" href="/login">Login</a></li>
-    </ul>
-  </nav>
-<section class="main-sec">
-
-    <section class="containerHead">
-     
-
-      <!--slider images-->
-      <div class="slider-wrapper1">
-        <div class="slider">
-          <% posts.reverse().forEach(function(elem){ %>
-            <% if(elem.token=="slide"){ %>
-          <img id="<%= elem._id %>"  src="https://drive.google.com/uc?id=<%= elem.link %>"/>
-          <% } %>
-          <% }) %>
+      <ul class="navlist visibility">
+        <li><a class="me-i" href="/project">Gallery</a></li>
+        <li>
+          <a
+            class="me-i"
+            href="mailto:harshdixitofficial@gmail.com?subject = Feedback"
+            >Feedback</a
+          >
+        </li>
+        <li><a class="me-i" href="/login">Login</a></li>
+      </ul>
+    </nav>
+    <section class="main-sec">
+      <section class="containerHead">
+        <!--slider images-->
+        <div class="slider-wrapper1">
+          <div class="slider">
+            <% posts.reverse().forEach(function(elem){ %> <%
+            if(elem.token=="slide"){ %>
+            <img
+              id="<%= elem._id %>"
+              src="https://drive.google.com/uc?id=<%= elem.link %>"
+            />
+            <% } %> <% }) %>
+          </div>
+          <div class="slider-nav">
+            <% posts.forEach(function(elem){ %> <% if(elem.token=="slide"){ %>
+            <a href="#<%= elem._id %>"></a>
+            <% } %> <% }) %>
+          </div>
         </div>
-        <div class="slider-nav">
-          <% posts.forEach(function(elem){ %>
-            <% if(elem.token=="slide"){ %>
-          <a href="#<%= elem._id %>"></a>
-          <% } %>
-         <% }) %>
+      </section>
+
+      <div class="outer-wrapper">
+        <div class="update-section">
+          <table class="record">
+            <thead class="heading">
+              <th>Updates</th>
+              <th></th>
+            </thead>
+
+            <% posts.forEach(function(elem){ %> <% if(elem.token =="update" &&
+            elem.description != ""){ %>
+            <tbody>
+              <tr>
+                <td data-label="Description">
+                  <output name="des"><b><%= elem.description %></b></output>
+                </td>
+
+                <% if(elem.link != ""){ %>
+                <td data-label="View">
+                  <a href="<%= elem.link %>"><b class="view">Visit</b></a>
+                </td>
+                <% }else{ %>
+                <td data-label="View"><b class="view"></b></td>
+
+                <% } %>
+              </tr>
+            </tbody>
+            <% } %> <% }) %>
+          </table>
+        </div>
+      </div>
+
+      <div class="outer-wrapper">
+        <div class="update-section">
+          <table class="record">
+            <thead class="heading">
+              <th>Study Material</th>
+              <th></th>
+            </thead>
+
+            <% posts.forEach(function(elem){ %> <% if(elem.token =="study" &&
+            elem.description != ""){ %>
+            <tbody>
+              <tr>
+                <td data-label="Description">
+                  <output name="des"><b><%= elem.description %></b></output>
+                </td>
+
+                <% if(elem.link != ""){ %>
+                <td data-label="View">
+                  <a href="<%= elem.link %>"><b class="view">Visit</b></a>
+                </td>
+                <% }else{ %>
+                <td data-label="View"><b class="view"></b></td>
+
+                <% } %>
+              </tr>
+            </tbody>
+            <% } %> <% }) %>
+          </table>
+        </div>
+      </div>
+      <div class="ad"><h2 class="adm">ADMINISTRATORS</h2></div>
+      <div class="sitemap">
+        <div class="wrapper">
+          <i id="left" class="fa-solid fa-angle-left"></i>
+          <ul class="carousel">
+            <% posts.forEach(function(elem){ %> <% if(elem.token =="sitemap" &&
+            elem.description != ""){ %>
+            <li class="card">
+              <div class="img">
+                <img
+                  src="https://drive.google.com/uc?id=<%= elem.link %>"
+                  alt="img"
+                  draggable="false"
+                />
+              </div>
+              <h2><%= elem.description %></h2>
+            </li>
+            <% } %> <% }) %>
+          </ul>
+          <i id="right" class="fa-solid fa-angle-right"></i>
         </div>
       </div>
     </section>
-
- <div class="outer-wrapper">
-  <div class="update-section">
-    
-    
-       <table class="record">
-        <thead class="heading">
-          <th>Updates</th>
-          <th></th>
-        </thead>    
-
-        <% posts.forEach(function(elem){ %>
-          <% if(elem.token =="update" && elem.description != ""){ %> 
-<tbody> 
-     <tr>
-      <td data-label="Description"><output name="des"><b><%= elem.description %></b></output></td> 
-
-        <% if(elem.link != ""){ %>
-       <td data-label="View"> <a href="<%= elem.link %>"><b class="view">Visit</b></a></td>
-        <% }else{ %>
-          <td data-label="View"><b class="view"></b></td>
-
-          <% } %>
-
-      </tr>
-      
-    
-</tbody>
-      <% } %>
-    <% }) %>
-
-       </table>
-    
-  </div>
-</div>
-
-<div class="outer-wrapper">
-  <div class="update-section">
-    
-    
-       <table class="record">
-        <thead class="heading">
-          <th>Study Material</th>
-          <th></th>
-        </thead>    
-
-        <% posts.forEach(function(elem){ %>
-          <% if(elem.token =="study" && elem.description != ""){ %> 
-<tbody> 
-     <tr>
-      <td data-label="Description"><output name="des"><b><%= elem.description %></b></output></td> 
-
-        <% if(elem.link != ""){ %>
-       <td data-label="View"> <a href="<%= elem.link %>"><b class="view">Visit</b></a></td>
-        <% }else{ %>
-          <td data-label="View"><b class="view"></b></td>
-
-          <% } %>
-
-      </tr>
-      
-    
-</tbody>
-      <% } %>
-    <% }) %>
-
-       </table>
-    
-  </div>
-</div>
-
-<div class="sitemap">
-<div class="wrapper">
- 
-  <i id="left" class="fa-solid fa-angle-left"></i>
-  <ul class="carousel">
-    <% posts.forEach(function(elem){ %>
-      <% if(elem.token =="sitemap" && elem.description != ""){ %> 
-    <li class="card">
-      <div class="img"><img src="https://drive.google.com/uc?id=<%= elem.link %>" alt="img" draggable="false"></div>
-      <h2><%= elem.description %></h2>
-    
-    </li>
-    <% } %>
-    <% }) %>
-  
-   
-  </ul>
-  <i id="right" class="fa-solid fa-angle-right"></i>
-</div>
-</div>
-</section>
     <% include %>
 
     <script src="/javascripts/script.js"></script>
