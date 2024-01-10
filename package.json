@@ -11,7 +11,7 @@
     
   "start": "node ./bin/www"
   
-  }, 
+  },
   
   "dependencies": {
   
@@ -29,6 +29,9 @@
   
     
   "express-session": "^1.17.3",
+  
+    
+  "firebase": "^10.7.1",
   
     
   "http-errors": "~1.6.3",
