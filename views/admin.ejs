@@ -79,7 +79,7 @@
        
         <td data-label="Username"><output name="username"><%= elem.username %></output></td>
         <% if(elem.link != ""){ %>
-          <td data-label="link"><output style="color: brown; font-weight: bold;" name="link"><a href="https://drive.google.com/file/d/<%= elem.link %>/view?usp=drive_link">View</a></output></td>
+          <td data-label="link"><output style="color: brown; font-weight: bold;" name="link"><img src="https://drive.google.com/uc?id=<%= elem.link %>"></img></output></td>
           <% }else{ %>
             <td data-label="link"><output style="color: brown; font-weight: bold;" name="link"></output></td>
             <% } %>
