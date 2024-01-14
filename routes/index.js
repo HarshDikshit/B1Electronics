@@ -2,10 +2,10 @@ var express = require('express');
 var router = express.Router();
 const userModel=require("./users");
 const session=require('express-session');
-const upload= require('./multer');
+//const upload= require('./multer');
 const slideModel= require("./slide");
 const User = require('./users');
-
+const cors = require('cors');
 const localStrategy= require("passport-local");
 const passport = require('passport');
 passport.use(new localStrategy(userModel.authenticate()));
@@ -13,7 +13,15 @@ const fs=require('fs');
 const {promisify}= require('util');
 const unlinkAsync=promisify(fs.unlink);
 
+const {getStorage,ref,uploadBytes,getDownloadURL, deleteObject} = require('firebase/storage');
 const mongoose=require('mongoose');
+const multer = require('multer');
+const {v4: uuidv4}=require('uuid');
+const path=require('path');
+const firebase = require('./Firebase');
+const storage = getStorage();
+const upload = multer({storage: multer.memoryStorage()})
+
 
 mongoose.connect("mongodb+srv://harshdixit15031975:amandixit@cluster0.jzb6fgz.mongodb.net/?retryWrites=true&w=majority")
 .then(()=>
@@ -22,20 +30,23 @@ mongoose.connect("mongodb+srv://harshdixit15031975:amandixit@cluster0.jzb6fgz.mo
 }).catch((err) => console.log("wrong")); 
 //mongoose.connect("mongodb://127.0.0.1:27017/boneelectronics");
 
- 
 
+
+
+router.use(cors()); 
+
+// auth middleware
 
 // GET home pagenpx nodemon
 
+
+ 
 router.get('/', async function(req, res, next) {
   var posts= await slideModel.find();
 
   res.render("index", {posts});
  
 });
-
-
-
 
 //checking for logged in user
 function isLoggedIn(req, res, next){
@@ -106,28 +117,45 @@ router.get("/project", function(req, res, next){
 
 // post data creation through admin panel
 
-router.post('/updateslide',  upload.single('image'), isLoggedIn, async function(req,res){
- 
-  
-
+router.post('/updateslide',  upload.single('imageFile'), isLoggedIn, async function(req,res){
  
  
- /* if(req.file){
-  const imgSlide= await slideModel.create({
-  imageUrl: req.file.filename,
-  link: req.body.link, 
-  token: req.body.token,
-  description: req.body.description,
-  username: req.session.passport.user
+   if(req.body.token != "" ){ 
+    if(req.file){
+const unique= uuidv4() + path.extname(req.file.originalname);
+if(req.body.token == "slide"){
+      var storageRef =ref(storage, 'slide/' + unique);
+    }else if(req.body.token == "sitemap"){
+      var storageRef =ref(storage, 'sitemap/' + unique);
+  }else{
+    var storageRef =ref(storage, 'images/' + unique);
+  }
+var uploadTask = uploadBytes(storageRef, req.file.buffer);
+uploadTask.then(() =>{
+  getDownloadURL(storageRef).then(async url =>{
+    console.log("file uploaded");
+   var fbLink = url;
+   const imgSlide= await slideModel.create({
+    imageUrl: unique,
+     link: fbLink,
+     token: req.body.token,
+     description: req.body.description,
+     username: req.session.passport.user
+ })
+ 
+  }).catch(err=>{
+    console.log(err);
+  })
 })
-  } */ if(req.body.token != ""){
+
+    }else{
     const imgSlide= await slideModel.create({
     /*  imageUrl: "", */
       link: req.body.link,
       token: req.body.token,
       description: req.body.description,
       username: req.session.passport.user
-      })
+      })}
 }else{
   res.send("kindly fill token field");
 }
@@ -139,19 +167,22 @@ res.redirect('/admin');
 router.get('/delete/:id', async function(req, res,next){
    //find and delete
 
+   const db =await slideModel.findById({
+    _id: req.params.id
+   })
+
+   const deleteRef = ref(storage, db.token + '/' + db.imageUrl);
+   deleteObject(deleteRef).then(() =>{
+    console.log('file deleted')
+   }).catch((err) =>{
+    console.log(err);
+     })
  const slide= await slideModel.findByIdAndDelete({
     _id: req.params.id
   })
 
 
 //check for server side images delete
-
-  try{
-  await unlinkAsync("./public/images/uploads/"+slide.imageUrl);
-  }catch(err){
-    console.log("something went wrong");
-  }
-
   res.redirect('/admin');
 })    
  

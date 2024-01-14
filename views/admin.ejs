@@ -30,7 +30,7 @@
    <input type="checkbox" id="show">
     <div class="slider-images">
       <label for="show" class="close-btn fa fa-times"></label>
-      <div class="text">Update</div>
+      <div class="text">Create</div>
       <form action="/updateslide" class="formsl" method="post" enctype="multipart/form-data">
       <div class="data"> 
         <label>Description</label>
@@ -38,16 +38,22 @@
         </div>
         <div class="data"> 
           <label>Token</label>
-        <input type="text" class="token" name="token" placeholder="Token"/>
+        <select  class="token" name="token">
+          <option value="select">--select--</option>
+         <option value="slide">slide</option>
+         <option value="sitemap">sitemap</option>
+       <option value="study">study</option>
+       <option value="update">update</option>
+        </select>
       </div>
       <div class="data"> 
         <label>Link</label>
         <input type="text" class="link" name="link" placeholder="link"/>
       </div>
-      <!-- <div class="data"> 
+       <div class="data"> 
         <label>File</label>
-        <input type="file" class="imageinput" name="image"/>
-      </div>   -->
+        <input type="file" class="imageinput" name="imageFile"/>
+      </div>  
    <output name="warning" class="warning">fill rquired fields</output>
         <input class="btn" type="submit" value="Update" />
      
@@ -79,7 +85,7 @@
        
         <td data-label="Username"><output name="username"><%= elem.username %></output></td>
         <% if(elem.link != ""){ %>
-          <td data-label="link"><output style="color: brown; font-weight: bold;" name="link"><img src="https://drive.google.com/uc?export=view&id=<%= elem.link %>"></img></output></td>
+          <td data-label="link"><output style="color: brown; font-weight: bold;" name="link"><img style="width: 50px; height: 50px;" src="<%= elem.link %>"></img></output></td>
           <% }else{ %>
             <td data-label="link"><output style="color: brown; font-weight: bold;" name="link"></output></td>
             <% } %>

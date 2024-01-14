@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"ew    3+-RP
+      456 
     />
     <link
       rel="stylesheet"
@@ -46,7 +47,7 @@
             if(elem.token=="slide"){ %>
             <img
               id="<%= elem._id %>"
-              src="https://drive.google.com/uc?export=view&id=<%= elem.link %>"
+              src="<%= elem.link %>"
             />
             <% } %> <% }) %>
           </div>
@@ -129,7 +130,7 @@
             <li class="card">
               <div class="img">
                 <img
-                  src="https://drive.google.com/uc?export=view&id=<%= elem.link %>"
+                  src="<%= elem.link %>"
                   alt="img"
                   draggable="false"
                 />

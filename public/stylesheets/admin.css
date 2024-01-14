@@ -242,7 +242,7 @@ table ,th, td  {
   form .data label{
     font-size: 18px;
   }
-  form .data input{
+  form .data input, .token{
     height: 100%;
     width: 100%;
     padding-left: 10px;
